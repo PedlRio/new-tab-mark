@@ -215,7 +215,7 @@ ul[data-type="taskList"] {
 }
 #app {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: center;
 }
 
