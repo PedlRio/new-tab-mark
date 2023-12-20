@@ -1,16 +1,18 @@
 <template>
   <aside class="sidebar">
-    <div class="sidebar-header">
-      <h2>Notas</h2>
-      <button @click="criarNota">Criar Nota</button>
-      <button @click="downloadNota">Download</button> <!-- Botão para download da nota -->
+      <div class="group">
+        <div class="sidebar-header">
+          <h2>Notas</h2>
+          <button @click="criarNota">Criar Nota</button>
+          <button @click="downloadNota">Download</button> <!-- Botão para download da nota -->
+        </div>
+        <ul class="notes-list">
+          <li v-for="(nota, index) in notas" :key="index" @click="selecionarNota(nota)">
+            {{ nota.title }}
+            <button @click="excluirNota(index)">Excluir</button> <!-- Botão para excluir nota -->
+          </li>
+        </ul>
     </div>
-    <ul class="notes-list">
-      <li v-for="(nota, index) in notas" :key="index" @click="selecionarNota(nota)">
-        {{ nota.title }}
-        <button @click="excluirNota(index)">Excluir</button> <!-- Botão para excluir nota -->
-      </li>
-    </ul>
   </aside>
 </template>
 
@@ -73,15 +75,6 @@ export default {
 
 <style scoped>
 /* Estilos para o componente */
-.sidebar {
-  width: 300px;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  background: #575757;
-  padding: 20px;
-  box-sizing: border-box;
-}
 
 .sidebar-header {
   display: flex;
@@ -106,5 +99,10 @@ export default {
 
 .notes-list li:hover {
   background-color: #e0e0e0;
+}
+
+.group{
+  padding: 45px;
+  min-height: 100vh;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <editor-content :editor="editor" />
+    <editor-content :editor="editor" class="editor"/>
 </template>
 
 <script>
@@ -213,24 +213,49 @@ ul[data-type="taskList"] {
     }
   }
 }
-.markdown-body {
-    box-sizing: border-box;
-    min-width: 200px;
-    max-width: 980px;
-    margin: 0 auto;
-    padding: 45px;
-  }
-  @media (max-width: 767px) {
-    .markdown-body {
-      padding: 15px;
-    }
-  }
-  div#app{
+#app {
     display: flex;
-    align-content: space-between;
+    flex-wrap: wrap;
     justify-content: center;
+}
+
+.sidebar {
+    flex: 0 0 25%; /* Define a largura do sidebar para 25% */
+    background-color: #494949; /* Cor de fundo opcional */
+}
+
+.editor {
+    flex: 0 0 75%; /* Define a largura do editor para 75% */
+}
+
+/* Media query para tornar o layout responsivo em dispositivos menores */
+@media screen and (max-width: 768px) {
+    #app {
+        flex-direction: column; /* Empilha os elementos verticalmente */
+    }
+
+    .sidebar,
+    .editor {
+        flex: 1 1 100%; /* Ocupa a largura total em dispositivos menores */
+    }
+}
+
+body{
+  background-color: #0d1117;
+  margin: 0;
+}
+
+.markdown-body {
+  min-width: 200px;
+  max-width: 980px;
+  padding: 45px;
+  margin: 0 auto;
+}
+
+@media (max-width: 767px) {
+  .markdown-body {
+    padding: 15px;
   }
-  body{
-    background-color: #0d1117;
-  }
+}
+
 </style>
