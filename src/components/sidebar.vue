@@ -5,6 +5,7 @@
           <h2>Notas</h2>
           <button @click="criarNota">Criar Nota</button>
           <button @click="downloadNota">Download</button> <!-- Botão para download da nota -->
+          <button @click="importaNota">importar</button> <!-- Botão para download da nota -->
         </div>
         <ul class="notes-list">
           <li v-for="(nota, index) in notas" :key="index" @click="selecionarNota(nota)">
@@ -25,11 +26,22 @@ export default {
     }
   },
   methods: {
-    criarNota () {
+    criarNota (content) {
+      let novoConteudo
+      let h1Content
+      if (content instanceof PointerEvent) {
+        // Se content é um objeto PointerEvent
+        h1Content = `Nota ${this.notas.length + 1}`
+        novoConteudo = `<h1>Nota ${h1Content}</h1><p>Conteúdo da nova nota</p>`
+      } else {
+        novoConteudo = content
+        const match = content.match(/<h1[^>]*>([^<]+)<\/h1>/i)
+        h1Content = match ? match[1] : null
+      }
       const novaNota = {
-        id: Date.now(), // Gera um ID único usando timestamp
-        title: `Nota ${this.notas.length + 1}`,
-        content: `<h1>Nota ${this.notas.length + 1}</h1><p>Conteúdo da nova nota</p>`
+        id: Date.now(),
+        title: h1Content,
+        content: novoConteudo
       }
       this.notas.push(novaNota)
       this.salvarNotas(this.notas, novaNota)
@@ -68,6 +80,9 @@ export default {
     },
     downloadNota () {
       this.$emit('baixaNota')
+    },
+    importaNota () {
+      this.$emit('importaNota')
     }
   }
 }

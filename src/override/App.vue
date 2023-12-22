@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <SidebarMenu ref="Sidebar" @baixaNota="download" @notaSelecionada="carregarNotaTiptap" @notaCriada="criarEditorTiptap" /> <!-- Adiciona manipulador para o evento notaCriada -->
+    <SidebarMenu ref="Sidebar" @importaNota="openLocalFile" @baixaNota="download" @notaSelecionada="carregarNotaTiptap" @notaCriada="criarEditorTiptap" /> <!-- Adiciona manipulador para o evento notaCriada -->
     <Tiptap ref="tiptapEditor" @notaAtualizada="AtualziaNotaTiptap"/>
   </div>
 </template>
@@ -57,6 +57,27 @@ export default {
       document.body.appendChild(element)
       element.click()
       document.body.removeChild(element)
+    },
+    openLocalFile () {
+      const input = document.createElement('input')
+      input.type = 'file'
+
+      input.onchange = (event) => {
+        const file = event.target.files[0]
+        const reader = new FileReader()
+
+        reader.onload = (fileEvent) => {
+          const content = fileEvent.target.result
+          console.log(content) // Aqui você terá o conteúdo do arquivo
+          this.$refs.Sidebar.criarNota(content)
+
+          // Faça o que for necessário com o conteúdo do arquivo
+        }
+
+        reader.readAsText(file)
+      }
+
+      input.click()
     }
   }
 }

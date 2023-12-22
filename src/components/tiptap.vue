@@ -177,9 +177,10 @@ export default defineComponent({
 .tiptap .is-empty::before {
   content: attr(data-placeholder);
   float: left;
-  color: #ced4da;
+  color: #ced4da7b;
   pointer-events: none;
   height: 0;
+  font-style: italic;
 }
 
 ul[data-type="taskList"] {
@@ -250,6 +251,9 @@ body{
   max-width: 980px;
   padding: 45px;
   margin: 0 auto;
+  &:focus-visible{
+    outline: none;
+  }
 }
 
 @media (max-width: 767px) {
