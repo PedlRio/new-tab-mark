@@ -37,4 +37,4 @@ The primary libraries used in developing this plugin include:
 ```
 
 ## Development
-If you wish to contribute improvements, you can do so via GitHub by submitting pull requests.ß
+If you wish to contribute improvements, you can do so via GitHub by submitting pull requests
