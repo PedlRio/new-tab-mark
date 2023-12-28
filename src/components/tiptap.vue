@@ -16,6 +16,7 @@ import TaskList from '@tiptap/extension-task-list'
 import FileHandler from '@tiptap-pro/extension-file-handler'
 import Link from '@tiptap/extension-link'
 import Image from '@tiptap/extension-image'
+import CodeBlock from '@tiptap/extension-code-block'
 
 const CustomDocument = Document.extend({
   content: 'heading block*'
@@ -66,6 +67,7 @@ export default defineComponent({
           TaskItem,
           TaskList,
           Link,
+          CodeBlock,
           Image.configure({
             inline: true,
             allowBase64: true

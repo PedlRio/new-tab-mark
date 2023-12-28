@@ -4,8 +4,6 @@
         <div class="sidebar-header">
           <h2>Notas</h2>
           <button @click="criarNota">Criar Nota</button>
-          <button @click="downloadNota">Download</button> <!-- Botão para download da nota -->
-          <button @click="importaNota">importar</button> <!-- Botão para download da nota -->
         </div>
         <ul class="notes-list">
           <li v-for="(nota, index) in notas" :key="index" @click="selecionarNota(nota)">
@@ -13,6 +11,8 @@
             <button @click="excluirNota(index)">Excluir</button> <!-- Botão para excluir nota -->
           </li>
         </ul>
+        <button @click="downloadNota">Exportar</button> <!-- Botão para download da nota -->
+        <button @click="importaNota">importar</button> <!-- Botão para download da nota -->
     </div>
   </aside>
 </template>
@@ -32,7 +32,7 @@ export default {
       if (content instanceof PointerEvent) {
         // Se content é um objeto PointerEvent
         h1Content = `Nota ${this.notas.length + 1}`
-        novoConteudo = `<h1>Nota ${h1Content}</h1><p>Conteúdo da nova nota</p>`
+        novoConteudo = `<h1>Nota ${this.notas.length + 1}</h1><p>Conteúdo da nova nota</p>`
       } else {
         novoConteudo = content
         const match = content.match(/<h1[^>]*>([^<]+)<\/h1>/i)
